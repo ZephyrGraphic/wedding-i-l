@@ -1,0 +1,27 @@
+{
+  "name": "Undangan Pernikahan Indri & Luthfi",
+  "short_name": "Indri & Luthfi",
+  "description": "Undangan pernikahan digital Indri & Luthfi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#334155",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/wedding-ring.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/wedding-ring.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "social"],
+  "lang": "id",
+  "dir": "ltr"
+}
