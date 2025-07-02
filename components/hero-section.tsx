@@ -41,10 +41,7 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
   }, [])
 
   return (
-    <div
-      id="home"
-      className="min-h-screen flex flex-col items-center justify-end sm:justify-center p-4 relative overflow-hidden z-40"
-    >
+    <div id="home" className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden z-40">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img src="/herosection-bg.jpg" alt="Background" className="w-full h-full object-cover" />
@@ -61,7 +58,7 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
 
       {/* Content - More transparent */}
       <div
-        className="relative z-50 bg-white/20 backdrop-blur-md shadow-2xl rounded-2xl p-4 sm:p-6 md:p-10 w-full max-w-4xl mx-auto text-center border border-white/10 hero-card mb-8 sm:mb-0"
+        className="relative z-50 bg-white/20 backdrop-blur-md shadow-2xl rounded-2xl p-3 sm:p-4 md:p-6 lg:p-10 w-full max-w-4xl mx-auto text-center border border-white/10 hero-card mt-auto mb-16 sm:mt-0 sm:mb-0"
         data-animate="fade-up"
       >
         {/* Kata-kata Pembuka */}
@@ -79,7 +76,7 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
 
         {/* Countdown Timer - More transparent */}
         <div className="mb-8 md:mb-10">
-          <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-3 lg:gap-6 max-w-2xl mx-auto">
             {[
               { value: timeLeft.days, label: "Hari" },
               { value: timeLeft.hours.toString().padStart(2, "0"), label: "Jam" },
@@ -88,12 +85,14 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white/30 backdrop-blur-sm rounded-lg md:rounded-xl p-2 sm:p-3 md:p-4 lg:p-6 text-center shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300"
+                className="bg-white/30 backdrop-blur-sm rounded-lg md:rounded-xl p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300"
               >
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-slate-900 mb-1">
+                <div className="text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-0.5 sm:mb-1">
                   {item.value}
                 </div>
-                <div className="text-slate-800 text-xs sm:text-sm md:text-base font-medium">{item.label}</div>
+                <div className="text-slate-800 text-xs sm:text-xs md:text-sm lg:text-base font-medium">
+                  {item.label}
+                </div>
               </div>
             ))}
           </div>
@@ -103,10 +102,10 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
         <div className="mt-6 md:mt-8 relative z-50">
           <button
             onClick={onShowInvitation}
-            className="group px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full hover:from-slate-800 hover:to-slate-900 transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl font-medium text-sm sm:text-base md:text-lg cursor-pointer w-full sm:w-auto"
+            className="group px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full hover:from-slate-800 hover:to-slate-900 transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl font-medium text-xs sm:text-sm md:text-base lg:text-lg cursor-pointer w-full sm:w-auto"
             style={{ pointerEvents: "auto" }}
           >
-            <i className="fas fa-envelope-open-text mr-2 md:mr-3 group-hover:animate-bounce"></i>
+            <i className="fas fa-envelope-open-text mr-1.5 sm:mr-2 md:mr-3 group-hover:animate-bounce"></i>
             Lihat Undangan
           </button>
         </div>
