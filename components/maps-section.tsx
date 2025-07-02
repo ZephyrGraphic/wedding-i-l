@@ -71,7 +71,7 @@ export default function MapsSection() {
   }
 
   return (
-    <section id="maps" className="min-h-screen py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100">
+    <section id="maps" className="min-h-screen py-20 px-4 bg-gradient-to-br from-emerald-100 via-emerald-50 to-white">
       <div className="max-w-4xl mx-auto" data-animate="fade-up">
         <h2 className="text-4xl md:text-5xl text-slate-800 font-heading text-center mb-16">Lokasi Acara</h2>
 

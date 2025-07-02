@@ -41,7 +41,10 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
   }, [])
 
   return (
-    <div id="home" className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden z-40">
+    <div
+      id="home"
+      className="min-h-screen flex flex-col items-center justify-end sm:justify-center p-4 relative overflow-hidden z-40"
+    >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img src="/herosection-bg.jpg" alt="Background" className="w-full h-full object-cover" />
@@ -58,7 +61,7 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
 
       {/* Content - More transparent */}
       <div
-        className="relative z-50 bg-white/20 backdrop-blur-md shadow-2xl rounded-2xl p-4 sm:p-6 md:p-10 w-full max-w-4xl mx-auto text-center border border-white/10 hero-card"
+        className="relative z-50 bg-white/20 backdrop-blur-md shadow-2xl rounded-2xl p-4 sm:p-6 md:p-10 w-full max-w-4xl mx-auto text-center border border-white/10 hero-card mb-8 sm:mb-0"
         data-animate="fade-up"
       >
         {/* Kata-kata Pembuka */}

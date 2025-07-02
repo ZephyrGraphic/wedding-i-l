@@ -2,7 +2,7 @@
 
 export default function EventSection() {
   return (
-    <section id="event" className="min-h-screen py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100">
+    <section id="event" className="min-h-screen py-20 px-4 bg-gradient-to-br from-emerald-100 via-emerald-50 to-white">
       <div className="max-w-4xl mx-auto text-center" data-animate="fade-up">
         <h2 className="text-4xl md:text-5xl text-slate-800 font-heading mb-16">Waktu & Tempat</h2>
 

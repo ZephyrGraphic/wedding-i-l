@@ -133,7 +133,7 @@ export default function GiftsSection() {
   return (
     <section
       id="gifts"
-      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-emerald-100 via-emerald-50 to-white"
     >
       <div className="max-w-4xl mx-auto" data-animate="fade-up">
         <div className="text-center mb-12 md:mb-16" data-animate="fade-up">
