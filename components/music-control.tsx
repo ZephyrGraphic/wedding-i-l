@@ -166,7 +166,7 @@ export default function MusicControl({ show, onMusicRefChange }: MusicControlPro
       </div>
 
       <audio ref={audioRef} preload="metadata" loop={false}>
-        <source src="/MUARA - Adera-Fix.mp3" type="audio/mp3" />
+        <source src="/MUARA - Adera.mp3" type="audio/mp3" />
         Your browser does not support the audio element.
       </audio>
     </>

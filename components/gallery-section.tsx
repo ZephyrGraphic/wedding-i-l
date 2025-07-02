@@ -1,8 +1,12 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import type React from "react"
 
 export default function GallerySection() {
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageError, setImageError] = useState(false)
 
   const galleryItems = [
     {
@@ -82,12 +86,98 @@ export default function GallerySection() {
   const filteredItems =
     selectedCategory === "all" ? galleryItems : galleryItems.filter((item) => item.category === selectedCategory)
 
+  const handleImageClick = (e: React.MouseEvent, index: number) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const actualIndex =
+      selectedCategory === "all" ? index : galleryItems.findIndex((item) => item.src === filteredItems[index].src)
+
+    console.log("Opening slideshow for image:", actualIndex, galleryItems[actualIndex])
+
+    setSelectedImage(actualIndex)
+    setImageLoaded(false)
+    setImageError(false)
+
+    // Prevent body scroll
+    document.body.style.overflow = "hidden"
+    document.body.style.position = "fixed"
+    document.body.style.width = "100%"
+  }
+
+  const closeSlideshow = () => {
+    console.log("Closing slideshow")
+    setSelectedImage(null)
+    setImageLoaded(false)
+    setImageError(false)
+
+    // Restore body scroll
+    document.body.style.overflow = ""
+    document.body.style.position = ""
+    document.body.style.width = ""
+  }
+
+  const nextImage = () => {
+    if (selectedImage !== null) {
+      const newIndex = (selectedImage + 1) % galleryItems.length
+      setSelectedImage(newIndex)
+      setImageLoaded(false)
+      setImageError(false)
+    }
+  }
+
+  const prevImage = () => {
+    if (selectedImage !== null) {
+      const newIndex = selectedImage === 0 ? galleryItems.length - 1 : selectedImage - 1
+      setSelectedImage(newIndex)
+      setImageLoaded(false)
+      setImageError(false)
+    }
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImage === null) return
+
+      e.preventDefault()
+
+      if (e.key === "Escape") closeSlideshow()
+      if (e.key === "ArrowRight") nextImage()
+      if (e.key === "ArrowLeft") prevImage()
+    }
+
+    if (selectedImage !== null) {
+      document.addEventListener("keydown", handleKeyDown)
+      return () => document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [selectedImage])
+
+  // Handle image load
+  const handleImageLoad = () => {
+    setImageLoaded(true)
+    setImageError(false)
+  }
+
+  const handleImageError = () => {
+    setImageError(true)
+    setImageLoaded(false)
+  }
+
   return (
     <section
       id="gallery"
-      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto" data-animate="fade-up">
+      {/* Floating Decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-32 left-16 text-pink-300/25 text-xl animate-float">🌸</div>
+        <div className="absolute top-60 right-24 text-red-300/30 text-lg animate-float-delayed">💕</div>
+        <div className="absolute bottom-40 left-12 text-pink-400/20 text-base animate-float">🌺</div>
+        <div className="absolute bottom-24 right-16 text-red-400/25 text-xl animate-float-delayed">💖</div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10" data-animate="fade-up">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl text-slate-800 font-heading mb-4 md:mb-6">Galeri Foto</h2>
           <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto px-4">
@@ -113,12 +203,13 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-          {filteredItems.map((item) => (
+        {/* Gallery Grid - 3 columns on mobile */}
+        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+          {filteredItems.map((item, index) => (
             <div
               key={item.src}
-              className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 sm:hover:-translate-y-2 bg-white border border-white/50"
+              className="group relative overflow-hidden rounded-lg sm:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 bg-white border border-white/50 cursor-pointer"
+              onClick={(e) => handleImageClick(e, index)}
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
@@ -127,22 +218,141 @@ export default function GallerySection() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 sm:p-3">
+                    <i className="fas fa-search-plus text-white text-sm sm:text-lg"></i>
+                  </div>
+                </div>
               </div>
-              <div className="p-3 sm:p-4 bg-white/80 backdrop-blur-safe">
-                <h3 className="text-slate-800 font-semibold mb-1 text-sm sm:text-base">{item.title}</h3>
-                <p className="text-slate-600 text-xs sm:text-sm line-clamp-2">{item.description}</p>
+              <div className="p-2 sm:p-3 bg-white/80 backdrop-blur-safe hidden sm:block">
+                <h3 className="text-slate-800 font-semibold mb-1 text-xs sm:text-sm">{item.title}</h3>
+                <p className="text-slate-600 text-xs line-clamp-2">{item.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Debug Info - Remove this after testing */}
+        {/* Debug Info */}
         <div className="mt-8 text-center text-sm text-slate-500">
+          <p>Selected Image: {selectedImage !== null ? selectedImage : "None"}</p>
           <p>
-            Selected: {selectedCategory} | Showing: {filteredItems.length} photos
+            Category: {selectedCategory} | Items: {filteredItems.length}
           </p>
         </div>
       </div>
+
+      {/* Slideshow Modal - Moved outside section */}
+      {selectedImage !== null && (
+        <div
+          className="fixed inset-0 bg-black/90 z-[9999]"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 9999,
+          }}
+        >
+          {/* Header with close button */}
+          <div className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 sm:p-6 bg-black/50 backdrop-blur-sm z-[10000]">
+            <div className="text-white text-sm sm:text-base font-medium">
+              {selectedImage + 1} / {galleryItems.length}
+            </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                closeSlideshow()
+              }}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300"
+            >
+              <i className="fas fa-times text-lg"></i>
+            </button>
+          </div>
+
+          {/* Main content area */}
+          <div className="absolute inset-0 flex items-center justify-center pt-20 pb-32">
+            {/* Navigation Buttons */}
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                prevImage()
+              }}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300 z-[10000]"
+            >
+              <i className="fas fa-chevron-left text-lg"></i>
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                nextImage()
+              }}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300 z-[10000]"
+            >
+              <i className="fas fa-chevron-right text-lg"></i>
+            </button>
+
+            {/* Image container */}
+            <div className="relative w-full h-full flex items-center justify-center px-16">
+              {/* Loading state */}
+              {!imageLoaded && !imageError && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                </div>
+              )}
+
+              {/* Error state */}
+              {imageError && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <i className="fas fa-exclamation-triangle text-4xl mb-4"></i>
+                    <p>Gagal memuat gambar</p>
+                    <button
+                      onClick={() => {
+                        setImageError(false)
+                        setImageLoaded(false)
+                      }}
+                      className="mt-2 px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                    >
+                      Coba Lagi
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Main image */}
+              {selectedImage !== null && galleryItems[selectedImage] && (
+                <img
+                  src={galleryItems[selectedImage].src || "/placeholder.svg"}
+                  alt={galleryItems[selectedImage].title}
+                  className={`max-w-full max-h-full object-contain transition-opacity duration-300 ${
+                    imageLoaded ? "opacity-100" : "opacity-0"
+                  }`}
+                  style={{
+                    maxWidth: "calc(100vw - 8rem)",
+                    maxHeight: "calc(100vh - 12rem)",
+                  }}
+                  onLoad={handleImageLoad}
+                  onError={handleImageError}
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Footer with image info */}
+          {selectedImage !== null && galleryItems[selectedImage] && (
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 to-transparent z-[10000]">
+              <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">{galleryItems[selectedImage].title}</h3>
+              <p className="text-white/80 text-sm sm:text-base">{galleryItems[selectedImage].description}</p>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   )
 }

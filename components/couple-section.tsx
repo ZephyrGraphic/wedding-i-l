@@ -1,9 +1,24 @@
 export default function CoupleSection() {
   return (
-    <section id="couple" className="min-h-screen py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <div className="max-w-4xl mx-auto text-center" data-animate="fade-up">
-        <h2 className="text-4xl md:text-5xl text-slate-800 font-heading mb-8">Bismillahirrahmanirrahim</h2>
-        <p className="text-xl text-slate-600 mb-16 leading-relaxed max-w-3xl mx-auto">
+    <section
+      id="couple"
+      className="min-h-screen py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden"
+    >
+      {/* Floating Decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 text-pink-300/30 text-2xl animate-float">🌸</div>
+        <div className="absolute top-40 right-20 text-red-300/40 text-xl animate-float-delayed">💕</div>
+        <div className="absolute bottom-32 left-20 text-pink-400/25 text-lg animate-float">🌺</div>
+        <div className="absolute bottom-20 right-10 text-red-400/30 text-2xl animate-float-delayed">💖</div>
+        <div className="absolute top-60 left-1/4 text-pink-200/20 text-sm animate-float">🌹</div>
+        <div className="absolute bottom-60 right-1/4 text-red-200/25 text-base animate-float-delayed">❤️</div>
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center relative z-10" data-animate="fade-up">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-800 font-heading mb-8">
+          Bismillahirrahmanirrahim
+        </h2>
+        <p className="text-lg sm:text-xl text-slate-600 mb-16 leading-relaxed max-w-3xl mx-auto">
           Dengan memohon rahmat dan ridho Allah SWT,
           <br />
           kami bermaksud menyelenggarakan pernikahan putra-putri kami:

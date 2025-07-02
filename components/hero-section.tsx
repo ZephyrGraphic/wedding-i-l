@@ -45,36 +45,36 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img src="/herosection-bg.jpg" alt="Background" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-800/30 to-slate-900/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-800/10 to-slate-900/30"></div>
       </div>
 
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-amber-300/30 rounded-full animate-float"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-amber-200/20 rounded-full animate-float-delayed"></div>
-        <div className="absolute bottom-32 left-20 w-1 h-1 bg-amber-400/40 rounded-full animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-2 h-2 bg-amber-300/30 rounded-full animate-float-delayed"></div>
+        <div className="absolute top-20 left-10 w-2 h-2 bg-amber-300/20 rounded-full animate-float"></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-amber-200/15 rounded-full animate-float-delayed"></div>
+        <div className="absolute bottom-32 left-20 w-1 h-1 bg-amber-400/25 rounded-full animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-2 h-2 bg-amber-300/20 rounded-full animate-float-delayed"></div>
       </div>
 
-      {/* Content - Ensure it's above overlay */}
+      {/* Content - More transparent */}
       <div
-        className="relative z-50 backdrop-blur-xl-safe shadow-2xl rounded-2xl p-4 sm:p-6 md:p-10 w-full max-w-4xl mx-auto text-center border border-white/20 hero-card"
+        className="relative z-50 bg-white/20 backdrop-blur-md shadow-2xl rounded-2xl p-4 sm:p-6 md:p-10 w-full max-w-4xl mx-auto text-center border border-white/10 hero-card"
         data-animate="fade-up"
       >
         {/* Kata-kata Pembuka */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-700 mb-3 md:mb-4 font-light">
-            Kepada <span className="font-medium text-slate-800">{`${pronoun} ${guestName}`.replace(/ $/, "")},</span>
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-800 mb-3 md:mb-4 font-light">
+            Kepada <span className="font-medium text-slate-900">{`${pronoun} ${guestName}`.replace(/ $/, "")},</span>
           </h2>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-slate-800 font-heading mb-4 md:mb-6 bg-gradient-to-r from-slate-700 to-slate-900 bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-slate-900 font-heading mb-4 md:mb-6 bg-gradient-to-r from-slate-800 to-slate-900 bg-clip-text text-transparent">
             Indri & Luthfi
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed px-2">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-800 leading-relaxed px-2">
             Akan Melangsungkan Resepsi Pernikahan Dalam:
           </p>
         </div>
 
-        {/* Countdown Timer */}
+        {/* Countdown Timer - More transparent */}
         <div className="mb-8 md:mb-10">
           <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-6 max-w-2xl mx-auto">
             {[
@@ -85,18 +85,18 @@ export default function HeroSection({ onShowInvitation, guestName, pronoun }: He
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-white to-slate-50 rounded-lg md:rounded-xl p-2 sm:p-3 md:p-4 lg:p-6 text-center shadow-lg border border-white/30 hover:shadow-xl transition-all duration-300"
+                className="bg-white/30 backdrop-blur-sm rounded-lg md:rounded-xl p-2 sm:p-3 md:p-4 lg:p-6 text-center shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300"
               >
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-slate-800 mb-1">
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-slate-900 mb-1">
                   {item.value}
                 </div>
-                <div className="text-slate-600 text-xs sm:text-sm md:text-base font-medium">{item.label}</div>
+                <div className="text-slate-800 text-xs sm:text-sm md:text-base font-medium">{item.label}</div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Tombol Lihat Undangan - Ensure it's clickable */}
+        {/* Tombol Lihat Undangan */}
         <div className="mt-6 md:mt-8 relative z-50">
           <button
             onClick={onShowInvitation}
