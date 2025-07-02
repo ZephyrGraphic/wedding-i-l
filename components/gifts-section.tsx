@@ -133,10 +133,10 @@ export default function GiftsSection() {
   return (
     <section
       id="gifts"
-      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100"
     >
       <div className="max-w-4xl mx-auto" data-animate="fade-up">
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-12 md:mb-16" data-animate="fade-up">
           <h2 className="text-3xl sm:text-4xl md:text-5xl text-slate-800 font-heading mb-4 md:mb-6">Wedding Gift</h2>
           <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto px-4">
             Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda
@@ -145,7 +145,7 @@ export default function GiftsSection() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4" data-animate="fade-up">
           {giftOptions.map((option) => (
             <button
               key={option.id}
@@ -163,7 +163,10 @@ export default function GiftsSection() {
         </div>
 
         {/* Content */}
-        <div className="bg-white/80 backdrop-blur-xl p-6 sm:p-8 rounded-2xl shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
+        <div
+          className="bg-white/80 backdrop-blur-xl p-6 sm:p-8 rounded-2xl shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
+          data-animate="fade-up"
+        >
           {giftOptions.find((option) => option.id === activeTab)?.content}
         </div>
 
@@ -176,7 +179,10 @@ export default function GiftsSection() {
         )}
 
         {/* Thank You Message */}
-        <div className="mt-6 sm:mt-8 bg-white/80 backdrop-blur-xl p-4 sm:p-6 rounded-2xl shadow-xl border border-white/50 text-center">
+        <div
+          className="mt-6 sm:mt-8 bg-white/80 backdrop-blur-xl p-4 sm:p-6 rounded-2xl shadow-xl border border-white/50 text-center"
+          data-animate="fade-up"
+        >
           <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">🙏</div>
           <p className="text-slate-700 font-medium mb-2 text-base sm:text-lg">Terima Kasih</p>
           <p className="text-slate-600 text-sm sm:text-base">Atas perhatian dan kebaikan hati Anda</p>

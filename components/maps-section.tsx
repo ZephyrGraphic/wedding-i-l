@@ -71,12 +71,15 @@ export default function MapsSection() {
   }
 
   return (
-    <section id="maps" className="min-h-screen py-20 px-4 bg-gradient-to-br from-white via-slate-50 to-slate-100">
+    <section id="maps" className="min-h-screen py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100">
       <div className="max-w-4xl mx-auto" data-animate="fade-up">
         <h2 className="text-4xl md:text-5xl text-slate-800 font-heading text-center mb-16">Lokasi Acara</h2>
 
         {/* Info Cuaca */}
-        <div className="bg-white/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl border border-white/50 mb-8 hover:shadow-2xl transition-all duration-500">
+        <div
+          className="bg-white/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl border border-white/50 mb-8 hover:shadow-2xl transition-all duration-500"
+          data-animate="fade-up"
+        >
           <h3 className="text-2xl text-slate-800 font-heading mb-6 text-center">Prakiraan Cuaca</h3>
           {loading ? (
             <div className="text-center py-8">
@@ -114,7 +117,10 @@ export default function MapsSection() {
         </div>
 
         {/* Embedded Map */}
-        <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/50 mb-8 hover:shadow-2xl transition-all duration-500">
+        <div
+          className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/50 mb-8 hover:shadow-2xl transition-all duration-500"
+          data-animate="fade-up"
+        >
           <div className="relative w-full h-96 rounded-xl overflow-hidden" data-animate="zoom-in">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3960.6682504410524!2d106.83959607499652!3d-6.930197993069635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNTUnNDguNyJTIDEwNsKwNTAnMzEuOCJF!5e0!3m2!1sid!2sid!4v1751345841657!5m2!1sid!2sid"
@@ -145,7 +151,7 @@ export default function MapsSection() {
         </div>
 
         {/* Tombol Navigasi */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-4" data-animate="fade-up">
           <a
             href="https://goo.gl/maps/ALtzLZTKHtnnKqUWA"
             target="_blank"

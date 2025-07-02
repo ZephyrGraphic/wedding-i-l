@@ -2,7 +2,7 @@ export default function CoupleSection() {
   return (
     <section
       id="couple"
-      className="min-h-screen py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden"
+      className="min-h-screen py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100 relative overflow-hidden"
     >
       {/* Floating Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -18,7 +18,7 @@ export default function Home() {
   const [musicRef, setMusicRef] = useState<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    // Initialize custom scroll animations
+    // Initialize enhanced scroll animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -50px 0px",
@@ -27,7 +27,10 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("animate-in")
+          // Add a small delay for better visual effect
+          setTimeout(() => {
+            entry.target.classList.add("animate-in")
+          }, 50)
         }
       })
     }, observerOptions)

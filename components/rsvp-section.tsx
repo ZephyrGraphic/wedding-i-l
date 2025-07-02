@@ -54,13 +54,14 @@ export default function RsvpSection({ guestName }: RsvpSectionProps) {
   }
 
   return (
-    <section id="rsvp" className="min-h-screen py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <section id="rsvp" className="min-h-screen py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100">
       <div className="max-w-2xl mx-auto" data-animate="fade-up">
         <h2 className="text-4xl md:text-5xl text-slate-800 font-heading text-center mb-16">Konfirmasi Kehadiran</h2>
 
         <form
           onSubmit={handleSubmit}
           className="bg-white/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
+          data-animate="fade-up"
         >
           <div className="mb-6">
             <label htmlFor="name" className="block text-slate-800 mb-3 font-medium">

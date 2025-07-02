@@ -167,7 +167,7 @@ export default function GallerySection() {
   return (
     <section
       id="gallery"
-      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-white via-emerald-50 to-emerald-100 relative overflow-hidden"
     >
       {/* Floating Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -178,7 +178,7 @@ export default function GallerySection() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10" data-animate="fade-up">
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-12 md:mb-16" data-animate="fade-up">
           <h2 className="text-3xl sm:text-4xl md:text-5xl text-slate-800 font-heading mb-4 md:mb-6">Galeri Foto</h2>
           <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto px-4">
             Momen-momen indah perjalanan cinta kami yang diabadikan dengan penuh makna
@@ -186,7 +186,10 @@ export default function GallerySection() {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 md:mb-12 px-4">
+        <div
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 md:mb-12 px-4"
+          data-animate="fade-up"
+        >
           {categories.map((category) => (
             <button
               key={category.id}
@@ -204,7 +207,7 @@ export default function GallerySection() {
         </div>
 
         {/* Gallery Grid - 3 columns on mobile */}
-        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6" data-animate="fade-up">
           {filteredItems.map((item, index) => (
             <div
               key={item.src}
